@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Dealer {
     private List<Car> cars = new ArrayList<>();
@@ -21,18 +22,20 @@ public class Dealer {
     }
 
     // Method to find a car (foreach technique)
-    public Car findCar(String vin) {
+    public List<Car> findCar(Enum brand) {
+        List<Car> cars_founds = new ArrayList<>();
         for (Car carFound : cars) {
-            if (carFound.getVin().equals(vin))
-                return carFound;
-            else
-                System.out.println("The car with VIN: " + vin + "is not in our inventory.");
+            if (carFound.getBrandName().equals(brand))
+                cars_founds.add(carFound);
         }
-        return null;
+        return cars_founds;
     }
 
     // Method to find a car (Predicate + Lambda technique)
-    public Car findCar2(Predicate<Car> buscar) {
-        return cars.stream().filter(car -> buscar.test(car)).findAny().get();
+    public List<Car> findCar2(Predicate<Car> buscar) {
+        return cars
+                .stream()
+                .filter(car -> buscar.test(car))
+                .collect(Collectors.toList());
     }
 }
