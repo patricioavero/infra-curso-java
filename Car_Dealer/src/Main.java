@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Scanner;
 import java.util.function.Predicate;
 
 public class Main {
@@ -35,5 +36,51 @@ public class Main {
         List<Car> cars_found  = (dealer.findCar2(predicateBrandName.and(predicateModelName)));
 
         cars_found.forEach(car -> System.out.println(car.toString()) );
+
+        Scanner scanner = new Scanner(System.in);
+
+        int opcion = 1;
+        while (opcion != 0){
+            System.out.println("1. Agregar auto al delear");
+            System.out.println("2. Mostrar auto al delear");
+            System.out.println("0. Salir");
+
+            int opcion = scanner.nextInt();
+
+            switch (opcion){
+                case 1:
+                    agregarAuto(dealer);
+                    break;
+                case 2:
+                    dealer.showCars();
+                    break;
+                case 0:
+                    System.out.println("Salida");
+                default:
+                    System.out.println("Opción no valida");
+            }
+        }
+    }
+    public static void agregarAuto(Dealer dealer){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("ingrese el VIN del auto: ");
+        String vin = sc.nextLine();
+        System.out.println("ingrese Marca del auto: ");
+        String brand = sc.nextLine();
+        System.out.println("ingrese el Modelo del auto: ");
+        String model = sc.nextLine();
+        System.out.println("ingrese el odometro del auto: ");
+        int odometer = sc.nextInt();
+        if (!vin.isEmpty() && !brand.isEmpty() && !model.isEmpty() && odometer >= 0) {
+            Car car = new Car(vin, Brands.valueOf(brand), model, odometer);
+            dealer.addCar(car);
+        }
+        else {
+            System.out.println("Error al ingresar los datos del auto");
+        }
+    }
+
+    public  static void mostrarAuto (Dealer dealer){
+        dealer.showCars();
     }
 }
