@@ -45,7 +45,7 @@ public class Main {
             System.out.println("2. Mostrar auto al delear");
             System.out.println("0. Salir");
 
-            int opcion = scanner.nextInt();
+            opcion = scanner.nextInt();
 
             switch (opcion){
                 case 1:
