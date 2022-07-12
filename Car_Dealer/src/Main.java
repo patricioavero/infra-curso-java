@@ -47,6 +47,7 @@ public class Main {
 
             opcion = scanner.nextInt();
 
+            //preguntarle a Aguistin sobre como cambiar esto a la forma moderna
             switch (opcion){
                 case 1:
                     agregarAuto(dealer);
