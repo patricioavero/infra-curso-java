@@ -32,6 +32,8 @@ public class Main {
 
 //        List<Car> cars_found  = (dealer.findCar(Brands.FIAT));
 
+        Predicate<Vehiculo> marca = (vehiculofound -> vehiculofound.getBrandName().equals(Brands.MERCEDESBENZ));
+
 
         Scanner scanner = new Scanner(System.in);
         int opcion = 1;
